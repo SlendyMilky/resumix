@@ -1,0 +1,55 @@
+---
+import type { Project } from "@/data/types";
+
+interface Props {
+  items: Project[];
+}
+
+const { items } = Astro.props;
+---
+
+<section aria-labelledby="projects-title">
+  <h2 id="projects-title" class="section-title">Projets</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {items.map((project) => (
+      <article class="card">
+        <div class="flex items-start justify-between gap-2 mb-2">
+          <h3 class="text-lg font-semibold text-surface-900 dark:text-white">
+            {project.url ? (
+              <a href={project.url} target="_blank" rel="noopener noreferrer" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                {project.name}
+                <svg class="w-3.5 h-3.5 inline-block ml-1 -mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+            ) : (
+              project.name
+            )}
+          </h3>
+        </div>
+
+        <p class="text-surface-600 dark:text-surface-400 text-sm mb-3 leading-relaxed">
+          {project.description}
+        </p>
+
+        {project.highlights && project.highlights.length > 0 && (
+          <ul class="list-none space-y-1 mb-3">
+            {project.highlights.map((h) => (
+              <li class="flex items-start gap-2 text-sm text-surface-600 dark:text-surface-400">
+                <span class="text-accent-500 mt-1 shrink-0">▸</span>
+                {h}
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div class="flex flex-wrap gap-1.5">
+          {project.technologies.map((tech) => (
+            <span class="tag text-xs">{tech}</span>
+          ))}
+        </div>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+
+*.env
+*.env.local
+
+.DS_Store
+Thumbs.db
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

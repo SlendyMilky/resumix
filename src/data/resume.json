@@ -1,0 +1,22 @@
+{
+  "basics": {
+    "name": "Your Name",
+    "title": "Your Title",
+    "email": "",
+    "location": "",
+    "summary": "",
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "url": "https://www.linkedin.com/in/yann-solliard",
+        "username": "yann-solliard"
+      }
+    ]
+  },
+  "experience": [],
+  "education": [],
+  "skills": [],
+  "projects": [],
+  "certifications": [],
+  "languages": []
+}

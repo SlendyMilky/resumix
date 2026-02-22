@@ -1,0 +1,102 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Experience from "@/components/Experience.astro";
+import Education from "@/components/Education.astro";
+import Skills from "@/components/Skills.astro";
+import Projects from "@/components/Projects.astro";
+import Certifications from "@/components/Certifications.astro";
+import Languages from "@/components/Languages.astro";
+import ThemeToggle from "@/components/ThemeToggle.astro";
+import PrintButton from "@/components/PrintButton.astro";
+import type { Resume } from "@/data/types";
+
+import resumeData from "@/data/resume.json";
+import pkg from "../../package.json";
+
+const resume = resumeData as Resume;
+const appVersion = pkg.version;
+
+const pageTitle = `${resume.basics.name} | ${resume.basics.title}`;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: resume.basics.name,
+  jobTitle: resume.basics.title,
+  email: resume.basics.email,
+  telephone: resume.basics.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: resume.basics.location,
+  },
+  description: resume.basics.summary,
+  url: resume.basics.profiles.find((p) => p.network === "Website")?.url,
+  sameAs: resume.basics.profiles.map((p) => p.url),
+  knowsAbout: resume.skills.flatMap((cat) => cat.items),
+  alumniOf: resume.education.map((edu) => ({
+    "@type": "EducationalOrganization",
+    name: edu.institution,
+  })),
+  hasCredential: resume.certifications.map((cert) => ({
+    "@type": "EducationalOccupationalCredential",
+    name: cert.name,
+    credentialCategory: "certification",
+    recognizedBy: {
+      "@type": "Organization",
+      name: cert.issuer,
+    },
+  })),
+  knowsLanguage: resume.languages.map((l) => l.language),
+};
+---
+
+<Layout title={pageTitle} description={resume.basics.summary}>
+  <ThemeToggle />
+  <PrintButton />
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <div class="page-container min-h-screen dot-pattern">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
+      <Header basics={resume.basics} />
+
+      <main class="space-y-12 lg:space-y-16">
+        {resume.experience.length > 0 && (
+          <Experience items={resume.experience} />
+        )}
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+          <div class="space-y-12 lg:space-y-16">
+            {resume.skills.length > 0 && (
+              <Skills categories={resume.skills} />
+            )}
+            {resume.languages.length > 0 && (
+              <Languages items={resume.languages} />
+            )}
+          </div>
+          <div class="space-y-12 lg:space-y-16">
+            {resume.education.length > 0 && (
+              <Education items={resume.education} />
+            )}
+            {resume.certifications.length > 0 && (
+              <Certifications items={resume.certifications} />
+            )}
+          </div>
+        </div>
+
+        {resume.projects.length > 0 && (
+          <Projects items={resume.projects} />
+        )}
+      </main>
+
+      <footer class="mt-16 pt-8 border-t border-surface-200/50 dark:border-surface-800/50 text-center text-sm text-surface-400 dark:text-surface-600 no-print">
+        <p>
+          <a href="https://github.com/resumix" class="link" target="_blank" rel="noopener noreferrer">Resumix</a>
+          <span class="mx-1.5 text-surface-300 dark:text-surface-700">·</span>
+          <span class="font-mono text-xs">{appVersion}</span>
+        </p>
+      </footer>
+    </div>
+  </div>
+</Layout>

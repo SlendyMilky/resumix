@@ -1,0 +1,121 @@
+---
+import type { Experience } from "@/data/types";
+
+interface Props {
+  items: Experience[];
+}
+
+const { items } = Astro.props;
+
+function formatDate(date: string): string {
+  const [year, month] = date.split("-");
+  if (!month) return year;
+  const months = ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"];
+  return `${months[parseInt(month) - 1]} ${year}`;
+}
+
+function getInitials(name: string): string {
+  return name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
+}
+
+function getLogoUrl(exp: Experience): string | null {
+  if (exp.companyLogo) return exp.companyLogo;
+  if (exp.companyDomain) return `https://logo.clearbit.com/${exp.companyDomain}?size=96`;
+  return null;
+}
+---
+
+<section aria-labelledby="experience-title">
+  <h2 id="experience-title" class="section-title">Expérience professionnelle</h2>
+
+  <div class="timeline space-y-8">
+    {items.map((exp) => {
+      const logoUrl = getLogoUrl(exp);
+      const isActive = !exp.endDate;
+      return (
+        <article class="card relative">
+          <div class={`timeline-dot ${isActive ? "timeline-dot-active" : ""}`} />
+
+          <div class="flex flex-col sm:flex-row sm:items-start gap-4 mb-3">
+            <!-- Company logo -->
+            <div class="company-logo hidden sm:flex">
+              {logoUrl ? (
+                <img
+                  src={logoUrl}
+                  alt={`Logo ${exp.company}`}
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+                />
+                <span class="company-initials hidden items-center justify-center w-full h-full">
+                  {getInitials(exp.company)}
+                </span>
+              ) : (
+                <span class="company-initials flex items-center justify-center w-full h-full">
+                  {getInitials(exp.company)}
+                </span>
+              )}
+            </div>
+
+            <div class="flex-1 min-w-0">
+              <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1">
+                <div>
+                  <h3 class="text-lg font-semibold text-surface-900 dark:text-white">
+                    {exp.position}
+                  </h3>
+                  <p class="text-primary-600 dark:text-primary-400 font-medium">
+                    {exp.company}
+                    {exp.location && (
+                      <span class="text-surface-500 font-normal"> · {exp.location}</span>
+                    )}
+                  </p>
+                </div>
+                <div class="flex items-center gap-2">
+                  {isActive && (
+                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-500/20 dark:text-emerald-400">
+                      Actuel
+                    </span>
+                  )}
+                  <time
+                    class="text-sm text-surface-500 whitespace-nowrap font-mono"
+                    datetime={exp.startDate}
+                  >
+                    {formatDate(exp.startDate)} — {exp.endDate ? formatDate(exp.endDate) : "Présent"}
+                  </time>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-surface-600 dark:text-surface-400 mb-3 leading-relaxed">
+            {exp.summary}
+          </p>
+
+          {exp.highlights.length > 0 && (
+            <ul class="list-none space-y-1.5 mb-4">
+              {exp.highlights.map((h) => (
+                <li class="flex items-start gap-2.5 text-surface-600 dark:text-surface-400">
+                  <span class="text-primary-500 mt-1.5 shrink-0">
+                    <svg class="w-3 h-3" viewBox="0 0 12 12" fill="currentColor">
+                      <path d="M6 0l2.12 3.88L12 6l-3.88 2.12L6 12 3.88 8.12 0 6l3.88-2.12z" />
+                    </svg>
+                  </span>
+                  <span>{h}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {exp.technologies && exp.technologies.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              {exp.technologies.map((tech) => (
+                <span class="tag">{tech}</span>
+              ))}
+            </div>
+          )}
+        </article>
+      );
+    })}
+  </div>
+</section>

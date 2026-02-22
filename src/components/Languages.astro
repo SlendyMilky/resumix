@@ -1,0 +1,22 @@
+---
+import type { Language } from "@/data/types";
+
+interface Props {
+  items: Language[];
+}
+
+const { items } = Astro.props;
+---
+
+<section aria-labelledby="languages-title">
+  <h2 id="languages-title" class="section-title">Langues</h2>
+
+  <div class="flex flex-wrap gap-4">
+    {items.map((lang) => (
+      <div class="card flex-1 min-w-[140px] text-center">
+        <p class="font-semibold text-surface-900 dark:text-white">{lang.language}</p>
+        <p class="text-sm text-surface-500 dark:text-surface-400">{lang.fluency}</p>
+      </div>
+    ))}
+  </div>
+</section>
