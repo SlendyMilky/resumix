@@ -1,10 +1,11 @@
 {
   "basics": {
-    "name": "Your Name",
-    "title": "Your Title",
+    "name": "🚀 Yann SOLLIARD",
+    "title": "Administrateur Système & Réseau",
     "email": "",
-    "location": "",
-    "summary": "",
+    "location": "La Tour-de-Peilz, Vaud, Suisse",
+    "summary": "Je suis administrateur système, en spécialisation du monde UNIX / Linux, je maîtrise particulièrement les solutions d’hypervision comme les technologies de VMWare, KVM/Qemu etc.",
+    "photo": "/images/profile.jpg",
     "profiles": [
       {
         "network": "LinkedIn",
@@ -13,9 +14,60 @@
       }
     ]
   },
-  "experience": [],
+  "experience": [
+    {
+      "company": "",
+      "position": "IT Desktop Service Specialist",
+      "location": "Lausanne, Vaud, Suisse",
+      "startDate": "2024-11",
+      "endDate": "2025-12",
+      "summary": "En tant qu'IT Desktop Service Specialist, je joue un rôle crucial dans le maintien et l'amélioration des opérations technologiques au sein d'une entreprise pharmaceutique de premier plan. Mon rôle comprend :\n- Gestion du parc informatique : Responsable de la commande, installation, déploiement et gestion du matériel technologique, notamment ordinateurs, périphériques, téléphones et imprimantes, assurant un environnement opérationnel optimisé pour tous les utilisateurs.\nSupport technique multi-niveaux : Fourniture d'un support technique de niveau 1 et 2, sur site et à\ndistance, pour résoudre efficacement les problèmes des utilisateurs et prévenir les interruptions.\n- Documentation technique : Rédaction et mise à jour constante de la documentation technique, garantissant la clarté de l'information et facilitant le partage des connaissances au sein de l'équipe.\nDéménagement et réorganisation : Gestion des déménagements des postes de travail tout en veillant à la continuité des opérations et à minimiser les perturbations.\nGestion de l'inventaire : Supervision de l'inventaire des actifs IT, assurant une traçabilité et une gestion efficaces des ressources technologiques de l'entreprise.\nCe rôle me permet de démontrer mes compétences techniques avancées et de m'engager dans un environnement stimulant, où l'innovation continue est valorisée pour soutenir et améliorer le cadre IT au sein de l'industrie pharmaceutique.",
+      "highlights": [],
+      "technologies": []
+    },
+    {
+      "company": "Pause professionnelle",
+      "position": "Réalisation de projet personnel",
+      "startDate": "2024",
+      "endDate": "2024-11",
+      "summary": "Réalisation de multiples projets professionnels portant essentiellement sur le travail indépendant et la formation personnelle en administration système Linux.",
+      "highlights": [],
+      "technologies": []
+    },
+    {
+      "company": "Pause professionnelle",
+      "position": "Réalisation de projet personnel",
+      "startDate": "2024",
+      "endDate": "2024-11",
+      "summary": "Réalisation de multiples projets professionnels portant essentiellement sur le travail indépendant et la formation personnelle en administration système Linux.",
+      "highlights": [],
+      "technologies": []
+    },
+    {
+      "company": "",
+      "position": "Soldat",
+      "location": "La lécherette, Vaud, Suisse",
+      "startDate": "2023-04",
+      "endDate": "2023-05",
+      "summary": "- Chef parc remplacement, j’ai eu l’opportunité de gérer un parc de véhicule ainsi que les chauffeurs poids lourd et blindé relié à ceux-ci.\n- Aide aux chefs matériel de la compagnie en étroite collaboration avec le sergent major chef logistique.\n- J’ai eu souvent l’occasion de gérer la subsistance sur le terrain en collaboration avec le fourrier d’unité.\n- J’ai pu également gérer avec le sergent major chef d’unité la partie administrative de la compagnie (gestion de la troupe, gestions des congés etc.)\n- Je suis également chauffeur de véhicule automobile lourd (C1E) et chauffeur de chariot élévateur de plusieurs catégories dont le FUG de l’armée suisse.",
+      "highlights": [],
+      "technologies": []
+    }
+  ],
   "education": [],
-  "skills": [],
+  "skills": [
+    {
+      "category": "Compétences",
+      "items": [
+        "Tout",
+        "Connaissances du secteur",
+        "Outils et technologie",
+        "Compétences interpersonnelles",
+        "Langues",
+        "Autres compétences"
+      ]
+    }
+  ],
   "projects": [],
   "certifications": [],
   "languages": []

@@ -5,6 +5,8 @@ dist/
 
 *.env
 *.env.local
+.linkedin-cookies.json
+linkedin-debug.json
 
 .DS_Store
 Thumbs.db
@@ -15,3 +17,4 @@ Thumbs.db
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+public/images/profile.jpg
